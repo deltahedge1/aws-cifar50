@@ -32,7 +32,7 @@ class Predictor(nn.Module):
             # 1. apply transforms
             x = self.transforms(x) # YOUR CODE HERE
             # 2. get the logits
-            x = model(x)# YOUR CODE HERE
+            x = self.model(x) # YOUR CODE HERE
             # 3. apply softmax
             #    HINT: remmeber to apply softmax across dim=1
             x = F.softmax(x, dim=1) # YOUR CODE HERE

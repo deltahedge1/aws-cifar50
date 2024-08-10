@@ -200,7 +200,7 @@ def one_epoch_test(test_dataloader, model, loss):
             # 1. forward pass: compute predicted outputs by passing inputs to the model
             logits = model(data) # YOUR CODE HERE
             # 2. calculate the loss
-            loss_value = loss(logits, targets).detach() # YOUR CODE HERE
+            loss_value = loss(logits, target).detach() # YOUR CODE HERE
 
             # update average test loss
             test_loss = test_loss + ((1 / (batch_idx + 1)) * (loss_value.data.item() - test_loss))
@@ -208,7 +208,7 @@ def one_epoch_test(test_dataloader, model, loss):
             # convert logits to predicted class
             # HINT: the predicted class is the index of the max of the logits
             pred = logits.data.max(1, keepdim=True)[1] # YOUR CODE HERE
-
+    
             # compare predictions to true label
             correct += torch.sum(torch.squeeze(pred.eq(target.data.view_as(pred))).cpu())
             total += data.size(0)

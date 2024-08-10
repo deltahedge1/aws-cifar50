@@ -63,13 +63,13 @@ def get_data_loaders(
             transforms.ToTensor(),
             transforms.Normalize(mean=mean, std=std)
         ]),
-        "test": transforms.Compose(
+        "test": transforms.Compose([
             # YOUR CODE HERE
             transforms.Resize((256, 256)),
             transforms.CenterCrop(224),
             transforms.ToTensor(),
             transforms.Normalize(mean=mean, std=std)
-        ),
+        ]),
     }
 
     # Create train and validation datasets
@@ -116,7 +116,7 @@ def get_data_loaders(
         # YOUR CODE HERE
         valid_data,
         batch_size=batch_size,
-        sampler=train_sampler,
+        sampler=valid_sampler,
         num_workers=num_workers,
         **kwargs # Extra keyword arguments are passed to the dataloaders. For example: GPU optimizations.
     )
@@ -159,10 +159,10 @@ def visualize_one_batch(data_loaders, max_n: int = 5):
     # YOUR CODE HERE:
     # obtain one batch of training images
     # First obtain an iterator from the train dataloader
-    dataiter  = iter(data_loaders["train"]) # YOUR CODE HERE
+    dataiter = iter(data_loaders["train"]) # YOUR CODE HERE
     # Then call the .next() method on the iterator you just
     # obtained
-    images, labels  =  dataiter.next() # YOUR CODE HERE
+    images, labels = next(dataiter) # YOUR CODE HERE
 
     # Undo the normalization (for visualization purposes)
     mean, std = compute_mean_and_std()
