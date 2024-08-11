@@ -19,6 +19,7 @@ def train_one_epoch(train_dataloader, model, optimizer, loss):
         model.cuda()
 
     # YOUR CODE HERE: set the model to training mode
+    model.train()
     
     train_loss = 0.0
 
